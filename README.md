@@ -1,1 +1,1 @@
-# SQLzoo
+# SQLZoo
