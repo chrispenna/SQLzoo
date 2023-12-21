@@ -210,7 +210,7 @@ WHERE yr = 1980
       OR yr = 1984
          AND subject = 'Chemistry'
 ```
-9. Show the year, subject, and name of winners for 1980 excluding chemistry and medicine
+9. Show the year, subject, and name of winners for 1980 excluding chemistry and medicine 
 ```sql
 SELECT *
 FROM nobel
