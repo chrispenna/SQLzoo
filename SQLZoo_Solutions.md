@@ -2,21 +2,28 @@ SQLzoo Solutions:
 # SQLZOO Solutions
 ## SELECT basics
 
-1.
+1. The example uses a WHERE clause to show the population of 'France'. Note that strings should be in 'single quotes';
+Modify it to show the population of Germany
 ```sql
-SELECT population FROM world
-  WHERE name = 'Germany'
+SELECT population
+FROM world
+WHERE name = 'Germany'
 ```
-2.
+2. Checking a list The word IN allows us to check if an item is in a list. The example shows the name and population for the countries 'Brazil', 'Russia', 'India' and 'China'.
+Show the name and the population for 'Sweden', 'Norway' and 'Denmark'.
 ```sql
-SELECT name, population FROM world
-  WHERE name IN ('Sweden', 'Norway', 'Denmark');
-
+SELECT name,
+       population
+FROM world
+WHERE name IN ( 'Sweden', 'Norway', 'Denmark' );
 ```
-3.
+3. Which countries are not too small and not too big? BETWEEN allows range checking (range specified is inclusive of boundary values). The example below shows countries with an area of 250,000-300,000 sq. km. Modify it to show the country and the area for countries with an area between 200,000 and 250,000.
 ```sql
-SELECT name, area FROM world
-  WHERE area BETWEEN 200000 AND 250000
+SELECT name,
+       area
+FROM world
+WHERE area
+BETWEEN 200000 AND 250000
 ```
 
 ## SELECT from WORLD
@@ -27,7 +34,7 @@ SELECT name, continent, population FROM world
 2.
 ```sql
 SELECT name FROM world
-WHERE population>200000000
+WHERE population > 200000000
 ```
 3.
 ```sql
@@ -41,7 +48,7 @@ SELECT name, population/1000000 FROM world
 ```
 5.
 ```sql
-SELECT name,population FROM world
+SELECT name, population FROM world
   WHERE name IN ('France','Germany','Italy')
 ```
 6.
@@ -51,53 +58,48 @@ SELECT name FROM world
 ```
 7.
 ```sql
-select name, population, area from world
-  where population > 250000000 or area > 3000000
+SELECT name, population, area FROM world
+  WHERE population > 250000000 or area > 3000000
 ```
 8.
 ```sql
-select name, population, area from world
-  where population > 250000000 xor area > 3000000
+select name, population, area FROM world
+  WHERE population > 250000000 xor area > 3000000
 ```
 9.
 ```sql
-select name, ROUND(population/1000000,2), ROUND(gdp/1000000000,2) from world
-  where continent = 'South America'
+SELECT name, ROUND(population/1000000,2), ROUND(gdp/1000000000,2) FROM world
+  WHERE continent = 'South America'
 ```
 10.
 ```sql
-select name, ROUND(gdp/population,-3) from world
-  where gdp > 1000000000000
+SELECT name, ROUND(gdp/population,-3) FROM world
+  WHERE gdp > 1000000000000
 ```
-### Harder Questions:
 11.
 ```sql
-SELECT name,
-       CASE WHEN continent='Oceania' THEN 'Australasia'
-            ELSE continent END
-  FROM world
- WHERE name LIKE 'N%'
+SELECT name, capital FROM world
+  WHERE length(name) = length(capital)
 ```
 12.
 ```sql
 SELECT name,
-       CASE WHEN continent='Europe' or continent='Asia' THEN 'Eurasia'
-            WHEN continent in ('North America','South America','Caribbean') THEN 'America'   
-            ELSE continent END
-  FROM world
- WHERE name LIKE 'A%' or name LIKE 'B%'
+       capital
+FROM world
+WHERE LEFT(name, 1) = LEFT(capital, 1)
+      AND name <> capital;
 ```
 13.(this one was a doozy)
 
 ```sql
-SELECT name, continent, CASE
-                     WHEN continent = 'Oceania' THEN 'Australasia'
-                     WHEN continent = 'Eurasia' THEN 'Europe/Asia'
-                     WHEN name = 'Turkey' THEN 'Europe/Asia'
-    WHEN continent = 'Caribbean' AND name LIKE 'B%' then 'North America'
-    WHEN continent = 'Caribbean' THEN 'South America'    
-                 ELSE continent END
-FROM world ORDER BY name
+SELECT name
+FROM world
+WHERE name LIKE '%a%'
+      AND name LIKE '%e%'
+      And name LIKE '%i%'
+      AND name LIKE '%o%'
+      AND name LIKE '%u%'
+      AND name NOT LIKE '% %'
 ```
 
 ## SELECT from NOBEL
