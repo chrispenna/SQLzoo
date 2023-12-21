@@ -1,7 +1,6 @@
 SQLzoo Solutions:
 # SQLZOO Solutions
 ## SELECT basics
-Some simple queries to get you started
 
 1.
 ```sql
